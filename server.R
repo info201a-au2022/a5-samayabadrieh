@@ -1,10 +1,10 @@
 # Load libaries
+library(plotly)
+library(ggplot2)
+library(shinythemes)
+library(dplyr)
 library(shiny)
 library(tidyverse)
-library(ggplot2)
-library(plotly)
-library(dplyr)
-library(shinythemes)
 
 # Load data
 co_df <- read.csv(

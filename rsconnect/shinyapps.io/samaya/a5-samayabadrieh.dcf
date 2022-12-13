@@ -5,9 +5,9 @@ account: samaya
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7860994
-bundleId: 6618210
+bundleId: 6629372
 url: https://samaya.shinyapps.io/a5-samayabadrieh/
-when: 1670632444.4224
-lastSyncTime: 1670632444.42243
+when: 1670889475.35915
+lastSyncTime: 1670889475.35919
 asMultiple: FALSE
 asStatic: FALSE

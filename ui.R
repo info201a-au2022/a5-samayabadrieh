@@ -1,10 +1,10 @@
 # Load libaries
+library(plotly)
+library(ggplot2)
+library(shinythemes)
+library(dplyr)
 library(shiny)
 library(tidyverse)
-library(ggplot2)
-library(plotly)
-library(dplyr)
-library(shinythemes)
 
 # Source server file
 source("server.R")
@@ -14,12 +14,17 @@ country_highest_co2 <- highest_co()
 yr_highest_co2 <- yr_highest_co2()
 yr_lowest_co2 <- yr_lowest_co2()
 
-# Here is the code for my intro panel:
+#----------------------------------------------------------------------------#
+## Code for my intro panel
+#----------------------------------------------------------------------------#
+
 ui <- fluidPage(
   page_one <- tabPanel(
-    "Introduction",
-    titlePanel("An Exploration of Carbon Dioxide Emissions: Intro"),
-    h3("An Exploration of Carbon Dioxide Emissions"),
+    "App Overview",
+    titlePanel("App Overview"),
+    
+    # My intro stuff
+    h3("Introduction"),
     p("Climate change is perhaps the most pressing global issue of the current
       era. If nothing is done to analyze and act on the circumstances of our
       situation, then humankind will be culpable for its own destruction as a results
@@ -38,8 +43,10 @@ ui <- fluidPage(
       Mexico. Finally, seeing as this report will be read by mostly college 
       students, I decided to limit the dataset to a timeframe I thought would be 
       most relevant to that demographic: 2000 through 2021"),
+    
+    # My 3 values
     h3("Three Relevant Values of Interest"),
-    p("My three relevant values of interest serve as responses to the following 
+    p("My three relevant values of interest serve as answers to the following 
       questions:"),
     p("Question 1: In which country out of Mexico, Canada, and the US is CO2 
       emission the highest (2000-2021)?"),
@@ -51,6 +58,8 @@ ui <- fluidPage(
     p("Question 3: In which year did that country produce the lowest amount of CO2?"),
     p("Answer 3: The year during which the lowest amount of co2 was produced was"
       , paste(yr_lowest_co2), "."),
+    
+    # Intro to my interactive visualization
     h3("Interactive Visualization"),
     p("The data visualization I created in order to highlight the mounting issue
       of pollution is a line chart. Each line corresponds to a country which you
@@ -60,27 +69,37 @@ ui <- fluidPage(
   ),
 )
 
-# Here is the second panel:
+#----------------------------------------------------------------------------#
+## Second Panel with data visualization
+#----------------------------------------------------------------------------#
+
 page_two <- tabPanel(
   "Interactive Visualization",
   titlePanel("Linechart of CO2 emissions in North America"),
   
-  # Widgets
+  # My interactive panels
   sidebarLayout(
     sidebarPanel(
-      radioButtons(
-        inputId = "countryid",
-        label = "Select a North American Country.",
-        c("United States", "Canada", "Mexico")
-      ),
+      
+      # First interactive panel
       selectInput(
         inputId = "pickcolor",
         label = "Select a color which is accessible to you.",
         choices = c("red", "blue", "purple", "black")
+      ),
+      
+      # Second interactive panel
+      radioButtons(
+        inputId = "countryid",
+        label = "Select a North American Country.",
+        c("United States", "Canada", "Mexico")
       )
     ),
     
-    # Instructions to access plot
+#----------------------------------------------------------------------------#
+## Instructions to interact with plot
+#----------------------------------------------------------------------------#
+    
     mainPanel(
       plotlyOutput("linegraph"),
       p("The following chart offers two different input widgets: Color
@@ -109,7 +128,10 @@ page_two <- tabPanel(
   )
 )
 
-# Tabs, theme
+#----------------------------------------------------------------------------#
+## Tabs and Theme
+#----------------------------------------------------------------------------#
+
 ui <- navbarPage(
   theme = shinytheme("darkly"),
   "An Exploration of Carbon Dioxide Emissions",
